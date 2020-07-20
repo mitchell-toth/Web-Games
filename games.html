@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Games</title>
+	<link rel="stylesheet" type="text/css" href="./games.css">
+</head>
+
+<body>
+	<div id="page-container">
+		<header>
+			<h1>Classic Games</h1>
+		</header>
+		
+		<content>
+			<h2><i>A collection of games made during quarantine.</i></h2>
+			<br><br>
+			<table id="gamesListTable" class="blockCenter">
+				<tr>
+					<td class="gameIcon"><img class="icon" alt="minesweeper-icon" src="./gameIcons/Minesweeper_Icon.png"></td>
+					<td class="gameTitle">Minesweeper</td>
+					<td class="playButton"><a class="playLink" href="./Minesweeper/minesweeper.html"><div class="playLinkContent">Play &#9658;</div></a></td>
+					<td class="gameDescription">This was my first attempt at a game, and it was relatively easy to create. Behind the scenes is a 2-dimensional integer array that's updated as each mine is randomly placed. Clicking a square simply reveals what's in this array. Honestly, the hardest part was making the color wave that sweeps outward from the last clicked square when the game is won/lost. All icons and images were made by Colin Toth.</td>
+					<td class="gameLineOfCode">Lines of JavaScript: ~400</td>
+					<td class="gameRules"><a href="./rules.html#minesweeper">How to Play</a></td>
+				</tr>
+				
+				<tr>
+					<td class="gameIcon"><img class="icon" alt="sudoku-icon" src="./gameIcons/Sudoku_Icon.png"></td>
+					<td class="gameTitle">Sudoku</td>
+					<td class="playButton"><a class="playLink" href="./Sudoku/sudoku.html"><div class="playLinkContent">Play &#9658;</div></a></td>
+					<td class="gameDescription">My second attempt at a game. This one was definitely more challenging to create than Minesweeper. I create the puzzle boards using a "backwards" approach: first developing a full solution board using backtracking -- then poking holes in it, checking if it's solvable, and repeating as needed. In my definition, "solvable" means a puzzle that can be solved using the "last-candidate" method and without guessing. Efficiency became a big concern in this process, and so the 'Hard' difficulty represents the least amount of numbers that can be given while ensuring the board will generate in a reasonable amount of time.</td>
+					<td class="gameLineOfCode">Lines of JavaScript: ~600</td>
+					<td class="gameRules"><a href="./rules.html#sudoku">How to Play</a></td>
+				</tr>
+				
+				<tr>
+					<td class="gameIcon"><img class="icon" alt="checkers-icon" src="./gameIcons/Checkers_Icon.png"></td>
+					<td class="gameTitle">Checkers</td>
+					<td class="playButton"><a class="playLink" href="./Checkers/checkers.html"><div class="playLinkContent">Play &#9658;</div></a></td>
+					<td class="gameDescription">This was the most challenging one to create but also the most rewarding. Checkers has a bunch of rules -- from valid moves, to compulsory jumps, kinging, and determining a winner -- that I had to enforce in the code, which took the most time. On the way, I was able to learn about 'drag' events and dynamic CSS stylesheets. The most interesting part came with making the computer player hard to beat. I implemented a variation of the min/max algorithm with alpha-beta pruning, which gave me the difficulty I desired. The 'Weak' player simply returns a random move, while the 'Strong' and 'Grandmaster' players look 3 and 7 moves ahead, respectively. </td>
+					<td class="gameLineOfCode">Lines of JavaScript: ~1300</td>
+					<td class="gameRules"><a href="./rules.html#checkers">How to Play</a></td>
+				</tr>
+				
+				<tr>
+					<td class="gameIcon"><img class="icon" alt="snake-icon" src="./gameIcons/Snake_Icon.png"></td>
+					<td class="gameTitle">Snake</td>
+					<td class="playButton"><a class="playLink" href="./Snake/snake.html"><div class="playLinkContent">Play &#9658;</div></a></td>
+					<td class="gameDescription">The classic game of Snake. This one was straightforward to create. I represent the snake using a singly linked list, which is such a natural, called-for solution here. The linked list points to the snake's head, which points to the next body part, and so on until the tail. Why so many lines of code? Well, I experimented around with a lot of user options and Local Storage techniques. You'll notice that, after making changes and hitting 'Apply', your preferences will remain even after the page reloads. Another difficult, experimental feature I implemented was support for mobile device swiping. Have fun with this nostalgic but brutally unforgiving game!</td>
+					<td class="gameLineOfCode">Lines of JavaScript: ~600</td>
+					<td class="gameRules"><a href="./rules.html#snake">How to Play</a></td>
+				</tr>
+				
+			</table>
+			<br><br>
+		</content>
+		
+		<footer>
+			<span class="footerContent">Mitchell Toth</span> 
+		</footer>
+	</div>
+</body>
+</html>

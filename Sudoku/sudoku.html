@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sudoku</title>
+	<link rel="stylesheet" type="text/css" href="./sudoku.css">
+	<link rel="stylesheet" type="text/css" href="../gamesPage.css">
+	<script defer src="../utilities/helperFunctions.js"></script>
+	<script defer src="./sudoku.js"></script>
+</head>
+
+<body>
+	<div id="page-container">
+		<content>
+			<a href="../games.html" class="backButton">&larr; Home</a>
+			<h1>Sudoku!</h1>
+			
+			<div>
+				<button onclick="print()">Print This Puzzle</button>
+				<button onclick="newGame()">New Game</button>
+				<button onclick="checkUserProgress()" id="checkProgressButton" disabled>Check Progress</button>
+				<br>
+				<div id="checkMessage"></div>
+			</div>
+			
+			<div>
+				<div id="sudokuBoardContainer" class="blockCenter">
+					<table id="sudokuBoard" class="blockCenter">
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<div id="cellChoicesBox" class="hidden">
+				<table class="cellChoicesTable">
+					<tr><td class="choiceCell">1</td><td class="choiceCell">2</td><td class="choiceCell">3</td></tr>
+					<tr><td class="choiceCell">4</td><td class="choiceCell">5</td><td class="choiceCell">6</td></tr>
+					<tr><td class="choiceCell">7</td><td class="choiceCell">8</td><td class="choiceCell">9</td></tr>
+					<tr><td colspan=3 class="choiceCell"> </td></tr>
+				</table>
+			</div>
+			
+			<div>
+				<button id="gameOptionsButton" style="display:inline-block;" class="blockCenter" onclick="toggleGameOptions()">Options</button>
+				<div id="gameOptions" class="hidden blockCenter">
+					<button class="closeButton" onclick="toggleGameOptions()">X</button>
+					<br>
+					<table id="gameOptionsTable" class="blockCenter">
+						<tr>
+							<th></th>
+							<th>Difficulty</th>
+						</tr>
+						<tr>
+							<td><input type="radio" id="beginner" name="gameSettings" value="E" checked></td>
+							<td><label for="beginner">Easy</label></td>
+						</tr>
+						<tr>
+							<td><input type="radio" id="intermediate" name="gameSettings" value="I"></td>
+							<td><label for="intermediate">Intermediate</label></td>
+						</tr>
+						<tr>
+							<td><input type="radio" id="expert" name="gameSettings" value="H"></td>
+							<td><label for="expert">Hard <text style="font-size:8pt">(allow ~15 sec to generate)</text></label></td>
+						</tr>
+					</table>
+					<button style="margin:6px" onclick="newGame()">Apply</button>
+					<br>
+					
+					<div style="margin-top:6px">Stuck on the current puzzle?</div>
+					<button style="margin:6px" class="blockCenter" onclick="revealOneNumber()">Reveal Logical Step</button>
+				</div>
+			</div>
+			
+		</content>
+		
+		<footer>
+			<div class="footerContent">Coded by Mitchell Toth</div>
+		</footer>
+	</div>
+</body>
+</html>

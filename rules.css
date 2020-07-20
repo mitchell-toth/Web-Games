@@ -1,0 +1,110 @@
+html {
+	background-image: linear-gradient(90deg, #d1d0d0 10%, white 60%);
+}
+
+body {
+	margin: 0;
+}
+
+content {
+	width: 60%;
+	min-width: 800px;
+	text-align: center;
+	display: block;
+	padding-bottom: 25px;
+}
+
+header {
+	width: 100%;
+	text-align: center;
+	height: 95px;
+	margin-bottom: 20px;
+	background-color: black;
+}
+
+h1 {
+	margin: 0;
+	font-size: 31pt;
+	color: white;
+	clear: left;
+	position: relative;
+    top: 23px;
+}
+
+h2 {
+	font-size: 20pt;
+    background-color: black;
+    color: white;
+}
+
+h3 {
+	margin-bottom: 8px;
+}
+
+#page-container {
+	font-family: Sans-serif;
+	position: relative;
+	min-height: 100vh;
+}
+
+.gameRules img {
+	max-width: 300px;
+	padding-top: 8px;
+	padding-bottom: 16px;
+	display: block;
+	margin: 0 auto 0 auto;
+}
+
+.gameRules .large {
+	max-width: 350px;
+}
+
+.imageCaption {
+	position: relative;
+	bottom: 16px;
+	font-style: italic;
+	font-size: 10pt;
+}
+
+.gameRules ul, .gameRules ol {
+	text-align: left;
+}
+
+.blockCenter {
+	margin: 0 auto 0 auto;
+}
+
+.backButton {
+	position: fixed;
+	left: 0;
+	top: 0;
+	background-color: black;
+	width: 100px;
+	height: 20px;
+	text-decoration: none;
+	font-weight: bold;
+	color: white;
+	padding: 6px;
+	padding-bottom: 8px;
+	font-size: 16pt;
+}
+
+.backButton:hover {
+	text-decoration: underline;
+}
+
+.footerContent {
+	float: right;
+	color: white;
+	padding-right: 6px;
+}
+
+.green {
+	color: green;
+	font-weight: bold;
+}
+
+.red {
+	color: red;
+	font-weight: bold;
+}

@@ -1,0 +1,136 @@
+#sudokuBoardContainer {
+	display: inline-block;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+#sudokuBoard td {
+	width: 48px;
+	height: 48px;
+	border: 1pt solid black;
+	border-radius: 2px;
+	font-size: 16pt;
+	font-weight: bold;
+}
+
+#sudokuBoard td:nth-child(3n) {
+  border-right: 3pt solid black;
+}
+#sudokuBoard td:nth-child(3n+1) {
+  border-left: 3pt solid black;
+}
+#sudokuBoard tr:nth-child(3n) td {
+  border-bottom: 3pt solid black;
+}
+#sudokuBoard tr:nth-child(3n+1) td {
+  border-top: 3pt solid black;
+}
+
+.normalSquare {
+	transition: all 0.5s;
+	background-color: white;
+}
+
+.numberInputter {
+	width: 40px;
+	height: 40px;
+	margin: 0 auto 0 auto;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.5s;
+	clear: both;
+	position: relative;
+	bottom: 7px;
+	margin-bottom: -4px;
+}
+
+.numberInputter:hover {
+	background-color: lightgray;
+}
+
+.inputtedNumber {
+	font-size: 16pt;
+	font-weight: normal;
+	line-height: 1.8;
+}
+
+.incorrectNumber {
+	background-color: red !important;
+	color: white !important;
+}
+
+.revealedNumber {
+	background-color: blue !important;
+	color: white !important;
+}
+
+.revealedContext {
+	background-color: lightblue !important;
+}
+
+.notes {
+	float: right;
+	width: 20px;
+	height: 8px;
+	font-size: 8pt;
+	border: none;
+	background-color: inherit;
+}
+
+.notes:hover {
+	background-color: lightgray;
+}
+
+#checkMessage {
+	font-style: italic;
+	margin-top: 6px;
+}
+
+#cellChoicesBox {
+	position: relative;
+	width: 120px;
+	line-height: normal;
+	z-index: 1;
+}
+
+.cellChoicesTable {
+	border: 1pt solid gray;
+	background-color: lightgray;
+	border-radius: 6px;
+	width: 120px;
+	height: 120px;
+}
+
+#sudokuBoard .cellChoicesTable tr td {
+	width: 8px;
+	height: 8px;
+	border: 1px solid white;
+	padding: 6px;
+	font-size: 14pt;
+	background-color: black;
+	color: white;
+	font-weight: normal;
+}
+
+#sudokuBoard .cellChoicesTable td:hover {
+	background-color: gray;
+}
+
+#gameOptions {
+	border: 2pt solid black;
+	border-radius: 4px;
+	background-color: lightgray;
+	width: 250px;
+}
+
+.closeButton {
+	float: right;
+	background: transparent;
+	outline: none;
+	border: none;
+}
+
+#gameOptionsTable td {
+	text-align: left;
+	padding-left: 10px;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Minesweeper</title>
+	<link rel="stylesheet" type="text/css" href="./minesweeper.css">
+	<link rel="stylesheet" type="text/css" href="../gamesPage.css">
+	<script defer src="../utilities/helperFunctions.js"></script>
+	<script defer src="./minesweeper.js"></script>
+</head>
+
+<body>
+	<div id="page-container">
+		<content>
+			<a href="../games.html" class="backButton">&larr; Home</a>
+			<h1>Minesweeper!</h1>
+			<div>
+				<div id="mineSweeperBoardContainer" class="blockCenter">
+					<div class="icon"><img src="./resources/stopwatch_image.png" alt="Timer icon"></div>
+					<div id="timer" class="displayBox" style="display:inline-block; margin-right:5px">0</div>
+					<div id="numMinesLeft" class="displayBox" style="display:inline-block; margin-left:5px">40</div>
+					<div class="icon"><img src="./resources/flag_image.png" alt="Flag icon"></div>
+					<button style="display:block; width:180px; margin-bottom:5px;" class="blockCenter" onclick="startNewGame()">New Game</button>
+					<table id="mineSweeperBoard" class="blockCenter"></table>
+				</div>
+			</div>
+			<div>
+				<label for="flagModeCheckBox" id="flagModeCheckBoxLabel">
+					<img src="./resources/flag_image_small.png" alt="Flag icon" style="padding-right:6px"><i>Flag Mode: </i>
+				</label>
+				<input type="checkbox" id="flagModeCheckBox">
+				<br>
+				<button id="gameOptionsButton" style="display:inline-block; width:180px" class="blockCenter" onclick="toggleGameOptions()">Options</button>
+				<div id="gameOptions" class="hidden blockCenter">
+					<button class="closeButton" onclick="toggleGameOptions()">X</button>
+					<br>
+					<table id="gameOptionsTable">
+						<tr>
+							<th></th>
+							<th></th>
+							<th>Rows</th>
+							<th>Cols</th>
+							<th>Mines</th>
+						</tr>
+						<tr>
+							<td><input type="radio" id="beginner" name="gameSettings" value="9 9 10"></td>
+							<td><label for="beginner">Beginner</label></td>
+							<td>9</td>
+							<td>9</td>
+							<td>10</td>
+						</tr>
+						<tr>
+							<td><input type="radio" id="intermediate" name="gameSettings" value="16 16 40" checked></td>
+							<td><label for="intermediate">Intermediate</label></td>
+							<td>16</td>
+							<td>16</td>
+							<td>40</td>
+						</tr>
+						<tr>
+							<td><input type="radio" id="expert" name="gameSettings" value="16 30 99"></td>
+							<td><label for="expert">Expert</label></td>
+							<td>16</td>
+							<td>30</td>
+							<td>99</td>
+						</tr>
+						<tr>
+							<td><input type="radio" id="insane" name="gameSettings" value="20 2 10"></td>
+							<td><label for="insane">Insane</label></td>
+							<td>20</td>
+							<td>2</td>
+							<td>10</td>
+						</tr>
+						<tr>
+							<td><input type="radio" id="custom" name="gameSettings" value="custom"></td>
+							<td><label for="custom">Custom</label></td>
+							<td class="textInputDataCell"><input type="number" id="customRows" style="width:30px"></td>
+							<td class="textInputDataCell"><input type="number" id="customCols" style="width:30px"></td>
+							<td class="textInputDataCell"><input type="number" id="customMines" style="width:30px"></td>
+						</tr>
+					</table>
+					<button style="margin:6px" onclick="changeBoardPreferences()">Apply</button>
+					<br>
+				</div>
+			</div>
+		</content>
+		
+		<footer>
+			<div class="footerContent">Coded by Mitchell Toth</div>
+		</footer>
+	</div>
+</body>
+</html>

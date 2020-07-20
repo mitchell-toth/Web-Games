@@ -1,0 +1,125 @@
+html {
+	background-image: radial-gradient(circle, #d1d0d0 10%, white 60%);
+}
+
+body {
+	margin: 0;
+}
+
+content {
+	text-align: center;
+	display: block;
+	padding-bottom: 25px;
+}
+
+header {
+	width: 100%;
+	text-align: center;
+	height: 95px;
+	margin-bottom: 20px;
+	background-color: black;
+}
+
+footer {
+	width: 100%;
+	height: 20px;
+	position: absolute;
+	bottom: 0;
+	margin-top: 20px;
+	background-color: black;
+}
+
+h1 {
+	margin: 0;
+	padding-top: 21px;
+	font-size: 34pt;
+	color: white;
+}
+
+h2 {
+	font-size: 14pt;
+	margin-bottom: 8px;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.blockCenter {
+	margin: 0 auto 0 auto;
+}
+
+#page-container {
+	font-family: Sans-serif;
+	position: relative;
+	min-height: 100vh;
+}
+
+#gamesListTable {
+	width: 85%;
+}
+
+#gamesListTable td {
+	min-height: 60px;
+	padding: 8px;
+	padding-bottom: 20px;
+}
+
+#gamesListTable img {
+	width: 90px;
+}
+
+.footerContent {
+	float: right;
+	color: white;
+	padding-right: 6px;
+}
+
+#gamesListTable .gameIcon {
+	padding-right: 10px;
+}
+
+.gameTitle {
+	font-size: 19pt;
+	font-weight: bold;
+	width: 10%;
+}
+
+.playButton {
+	width: 10%;
+}
+
+.gameDescription {
+	font-size: 10pt;
+	width: 45%;
+	min-width: 250px;
+}
+
+.gameLineOfCode {
+	width: 15%;
+}
+
+.gameRules {
+	width: 10%;
+	min-width: 50px;
+}
+
+.playLink {
+	background-color: lightgreen;
+	border-radius: 20px;
+	border: 1pt solid green;
+	text-decoration: none;
+	width: 100px;
+    height: 30px;
+    display: inline-block;
+}
+
+.playLinkContent {
+	position: relative;
+	top: 5px;
+	font-size: 13pt;
+}
+
+.playLink:hover {
+	font-weight: bold;
+}

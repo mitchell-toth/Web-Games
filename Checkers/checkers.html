@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Checkers</title>
+	<link rel="stylesheet" type="text/css" href="./checkers.css" title="checkers">
+	<link rel="stylesheet" type="text/css" href="../gamesPage.css">
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+	<script defer src="../utilities/helperFunctions.js"></script>
+	<script defer src="./checkers.js"></script>
+</head>
+
+<body>
+	<div id="page-container">
+		<content>
+			<a href="../games.html" class="backButton">&larr; Home</a>
+			<h1>Checkers!</h1>
+			
+			<div style="margin-bottom: 4px">
+				<button onclick="switchSides()" id="switchSidesButton">Switch Sides</button>
+				<button onclick="startGame()" id="startGameButton">Start Game</button>
+				<text class="gameMessage" id="gameMessage"></text>
+			</div>
+			
+			<div>
+				<table class="blockCenter">
+					<tr>
+						<td>
+							<table id="leftCheckerSpace">
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+							</table>
+						</td>
+						<td>
+							<div id="checkersBoardContainer" class="blockCenter">
+								<table id="checkersBoard" class="blockCenter">
+									<tr>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+									</tr>
+									<tr>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+									</tr>
+									<tr>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+									</tr>
+									<tr>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+									</tr>
+									<tr>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+									</tr>
+									<tr>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+									</tr>
+									<tr>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+									</tr>
+									<tr>
+										<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+									</tr>
+								</table>
+							</div>
+						</td>
+						<td>
+							<table id="rightCheckerSpace">
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+								<tr>
+									<td></td><td></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			<div id="gameDifficultySettings">
+				<div style="margin-bottom:4px; font-size:large">Difficulty:</div>
+				<input type="radio" id="easy_gameDifficulty" name="difficultySettings" value="E" checked><label style="margin-right:6px" for="easy_gameDifficulty">Weak</label>
+				<input type="radio" id="intermediate_gameDifficulty" name="difficultySettings" value="I"><label style="margin-right:6px" for="intermediate_gameDifficulty">Strong</label>
+				<input type="radio" id="hard_gameDifficulty" name="difficultySettings" value="H"><label for="hard_gameDifficulty">Grandmaster</label>
+			</div>
+			
+			<div>
+				<button onclick="undoHumanMove()" id="undoButton" class="hidden" disabled>Undo</button>
+				<button onclick="MOVE_CONFIRMED=true;" id="confirmMoveButton" class="hidden" disabled>Confirm Move</button>
+				<button onclick="newGame()" id="newGameButton" class="hidden">New Game</button>
+			</div>
+			<br>
+			<div>
+				<button id="gameOptionsButton" onclick="toggleGameOptions()" class="hidden">More Options</button>
+				<div id="gameOptions" class="hidden blockCenter">
+					<button class="closeButton" onclick="toggleGameOptions()">X</button>
+					<br>
+					<button id="stalemateButton" class="optionsButton blockCenter" onclick="offerStalemate()" style="margin-top:3px; margin-bottom:3px">Offer Draw</button>
+					<button id="resignButton" class="optionsButton blockCenter" onclick="resign()" style="margin-top:3px; margin-bottom:3px">Resign</button>
+					<table class="blockCenter">
+						<tr><td style="font-size:10pt">Enemy Pieces:</td><td><input id="computerColorPicker" style="width:30px; height:20px" type="color" value="#000000"></td></tr>
+						<tr><td style="font-size:10pt">Your Pieces:</td><td><input id="humanColorPicker" style="width:30px; height:20px" type="color" value="#FF0000"></td></tr>
+					</table>
+					<div id="gameOptionsMessage"></div>
+				</div>
+			</div>
+			<div id="difficultyMessage" class="hidden"></div>
+			
+		</content>
+		
+		<footer>
+			<div class="footerContent">Coded by Mitchell Toth</div>
+		</footer>
+	</div>
+</body>
+</html>

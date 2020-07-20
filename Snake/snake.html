@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Snake</title>
+	<link rel="stylesheet" type="text/css" href="./snake.css" title="snake">
+	<link rel="stylesheet" type="text/css" href="../gamesPage.css">
+	<script defer src="../utilities/helperFunctions.js"></script>
+	<script defer src="../utilities/swiped-events.js"></script>
+	<script defer src="./snake.js"></script>
+</head>
+
+<body>
+	<div id="page-container">
+		<content>
+			<a href="../games.html" class="backButton">&larr; Home</a>
+			<h1>Snake!</h1>
+			<hr style="width:600px">
+			
+			<div style="margin-bottom: 4px">
+				<button onclick="setupGame()" id="startGameButton">New Game</button>
+				<text class="gameMessage" id="gameMessage"></text>
+			</div>
+			<div style="margin-bottom:4px">
+				<text>Score: </text><em id="gameCaption_score">0</em>
+				<text>&nbsp;&nbsp;&nbsp;</text>
+				<text>Best: </text><em id="gameCaption_highScore">0</em>
+			</div>
+			
+			<div>
+				<div id="snakeBoardContainer" class="blockCenter">
+					<table id="snakeBoard" cellspacing=0>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<div style="margin-top:4px; margin-bottom:6px">
+				<text>Speed: </text><em id="gameCaption_speed">3</em>
+				<text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+				<text>Size: </text><em id="gameCaption_numRows">17</em><text>x</text><em id="gameCaption_numCols">17</em>
+			</div>
+			<div>
+				<button id="gameOptionsButton" onclick="toggleGameOptions()">Options</button>
+				<div id="gameOptions" class="hidden blockCenter">
+					<button class="closeButton" onclick="toggleGameOptions()">X</button>
+					<br>
+					<label for="speedRangeInput">Speed: </label><text id="speedRangeDisplay"></text><br>
+					<input type="range" id="speedRangeInput" min="0" max="10">
+					<br>
+					<label for="rowsRangeInput">Rows: </label><text id="rowsRangeDisplay"></text><br>
+					<input type="range" id="rowsRangeInput" min="4" max="50">
+					<br>
+					<label for="colsRangeInput">Columns: </label><text id="colsRangeDisplay"></text><br>
+					<input type="range" id="colsRangeInput" min="4" max="50">
+					<br>
+					<label for="numFruitRangeInput">Available Fruit: </label><text id="numFruitRangeDisplay"></text><br>
+					<input type="range" id="numFruitRangeInput" min="1" max="6">
+					<br>
+					<label for="fruitEffectRangeInput">Fruit Effect: </label><text id="fruitEffectRangeDisplay"></text><br>
+					<input type="range" id="fruitEffectRangeInput" min="1" max="10">
+					<br>
+					<table class="blockCenter" style="margin-bottom:4px">
+						<tr>
+							<th>Snake</th>
+							<th>Fruit</th>
+							<th>Board</th>
+						</tr>
+						<tr>
+							<td><input id="snakeColorPicker" style="width:30px; height:20px" type="color" value="#FFFFFF"></td>
+							<td><input id="fruitColorPicker" style="width:30px; height:20px" type="color" value="#FF0000"></td>
+							<td><input id="backgroundColorPicker" style="width:30px; height:20px" type="color" value="#000000"></td>
+						</tr>
+					</table>
+					<label for="zoomRangeInput">Zoom Level: &nbsp;</label><text id="zoomRangeDisplay"></text><br>
+					<input type="range" id="zoomRangeInput" min="1" max="3">
+					<br>
+					<button onclick="applyOptionsChanges()" class="blockCenter" style="margin-bottom:6px">Apply</button>
+				</div>
+			</div>
+			
+			<div id="gameStartHint">
+				<br>
+				<text>Use the arrow keys or WASD to move the snake.</text>
+				<br>
+				<text>Or swipe in the desired direction on the board if using a mobile device.</text>
+			</div>
+			
+			<div>
+				<h2 style="margin-bottom:2px">Skill Level</h2>
+				<table class="blockCenter" id="skillDisplayTable">
+					<tr>
+						<td>Score: </td><td><em id="gameSkillScoreCaption"></em></td>
+					</tr>
+					<tr>
+						<td>High Score: </td><td><em id="gameSkillHighScoreCaption"></em></td>
+					</tr>
+					<tr>
+						<td>Max Score: </td><td><em id="gameSkillMaxScoreCaption"></em></td>
+					</tr>
+				</table>
+			</div>
+			<br>
+			
+			<div>
+				<h2>Your Best Games</h2>
+				<em class="hidden" id="noSavedGamesMessage">You currently have no saved games.</em>
+				<table class="hidden blockCenter" id="topSkillScoresTable">
+					<tr class="headerRow">
+						<th>Rank</th>
+						<th title="Skill level hierarchy: 
+Perfect, 
+Insane, 
+Legendary, 
+Master, 
+Expert, 
+Intermediate, 
+Beginner"
+						>Skill Level</th>
+						<th>Score</th>
+						<th>Game Configuration</th>
+						<th>Available Fruit</th>
+						<th>Fruit Effect</th>
+						<th>Date</th>
+						<th>Count</th>
+					</tr>
+				</table>
+				<!--<button onclick="window.localStorage.clear();">Reset Stats</button>-->
+			</div>
+			
+		</content>
+		
+		<footer>
+			<div class="footerContent">Coded by Mitchell Toth</div>
+		</footer>
+	</div>
+</body>
+</html>

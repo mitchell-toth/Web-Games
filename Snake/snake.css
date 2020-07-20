@@ -1,0 +1,141 @@
+content {
+	background-color: transparent;
+}
+
+#snakeBoardContainer {
+	display: table;
+	background-color: black;
+	padding: 20px;
+}
+
+#snakeBoard {
+	border: 2pt solid #5d5d5d;
+}
+
+#snakeBoard td {
+	width: 20px;
+	height: 20px;
+	padding: 0px;
+}
+
+content h1 {
+	width: 200px;
+}
+
+content h2 {
+	font-size: 14pt;
+}
+
+.snakeHead div {
+	border-radius: 0px 6px 6px 0px;
+	width: 100%;
+	height: 100%;
+}
+
+.snakeBody div {
+	width: 100%;
+	height: 100%;
+}
+
+.fruit div {
+	border-radius: 100px;
+	width: 65%;
+    height: 65%;
+	padding: 0px;
+}
+
+#snakeBoardContainer .snakeHead div {
+	background-color: #FFFFFF;
+}
+
+#snakeBoardContainer .snakeBody div {
+	background-color: #FFFFFF;
+}
+
+#snakeBoardContainer .fruit div {
+	background-color: #FF0000;
+}
+
+#snakeBoardContainer #snakeBoard td {
+	background-color: #000000;
+}
+
+.gameMessage {
+	display: inline-block;
+	margin-bottom: 4px;
+	text-shadow: .5px .5px 0 gray, -.5px .5px 0 gray, .5px -.5px 0 gray, -.5px .5px 0 gray;
+	font-size: larger;
+}
+
+#gameOptions {
+	border: 1pt solid black;
+	border-radius: 12px;
+	width: 240px;
+	background-color: black;
+	color: white;
+}
+
+#gameOptions label, #gameOptions th {
+	font-weight: normal;
+	font-size: 11pt;
+}
+
+.closeButton {
+	float: right;
+	background: transparent;
+	outline: none;
+	border: none;
+	color: white;
+}
+
+.optionsButton {
+	width: 130px; 
+	display: block; 
+	clear: both;
+}
+
+#gameStartHint {
+	text-align: center;
+	font-style: italic;
+	font-size: 11pt;
+}
+
+#skillDisplayTable {
+	text-align: right;
+	position: relative;
+	left: -30px;
+}
+
+#skillDisplayTable td:nth-child(1) {
+	padding-right: 20px;
+}
+
+#topSkillScoresTable {
+	border: 1pt solid black;
+}
+
+#topSkillScoresTable td, #topSkillScoresTable th {
+	border: 1pt solid black;
+	padding: 6px;
+}
+
+#topSkillScoresTable tr.headerRow:nth-child(1), #topSkillScoresTable .skillEntryRank {
+	background-color: black;
+	color: white;
+}
+
+#topSkillScoresTable tr {
+	background-color: lightgray;
+}
+
+#topSkillScoresTable tr:nth-child(2) td:nth-child(2) {
+	background-color: #83ff83;
+}
+
+#topSkillScoresTable td.mostRecentDate {
+	background-color: #fafaa8;
+}
+
+#topSkillScoresTable tr.mostRecentAddition {
+	background-color: #90f8db;
+}

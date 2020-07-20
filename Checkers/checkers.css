@@ -1,0 +1,179 @@
+button {
+	background-color: beige;
+}
+
+button:disabled {
+	background-color: #e5e5df;
+}
+
+content h1 {
+	width: 300px;
+}
+
+#checkersBoardContainer {
+	display: inline-block;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 2pt solid black;
+}
+
+#checkersBoard td {
+	width: 50px;
+	height: 50px;
+	border-radius: 2px;
+}
+
+#checkersBoard tr:nth-child(2n) td:nth-child(2n) {
+	background-color: #ebd9c1;
+}
+#checkersBoard tr:nth-child(2n) td:nth-child(2n+1) {
+	background-color: #9b6150;
+}
+#checkersBoard tr:nth-child(2n+1) td:nth-child(2n) {
+	background-color: #9b6150;
+}
+#checkersBoard tr:nth-child(2n+1) td:nth-child(2n+1) {
+	background-color: #ebd9c1;
+}
+
+#leftCheckerSpace {
+	padding-right: 10px;
+}
+
+#leftCheckerSpace td {
+	width: 50px;
+	height: 50px;
+}
+
+#rightCheckerSpace {
+	padding-left: 10px;
+}
+
+#rightCheckerSpace td {
+	width: 50px;
+	height: 50px;
+}
+
+.gameMessage {
+	display: inline-block;
+	margin-bottom: 4px;
+	text-shadow: .5px .5px 0 gray, -.5px .5px 0 gray, .5px -.5px 0 gray, -.5px .5px 0 gray;
+	font-size: larger;
+}
+
+#difficultyMessage {
+	font-size: 9pt;
+	margin-top: 6px;
+}
+
+.gameMessage, #difficultyMessage, #gameDifficultySettings {
+	font-family: 'Lobster', cursive;
+}
+
+.checkerPiece {
+	border-radius: 100px;
+	width: 42px;
+	height: 42px;
+}
+
+.cc1 {
+	border-radius: 100px;
+	border: inherit;
+	width: 30px;
+	height: 30px;
+	background-color: inherit;
+	position: relative;
+	top: 4.4px;
+}
+
+.cc2 {
+	border-radius: 100px;
+	border: inherit;
+	width: 18px;
+	height: 18px;
+	background-color: inherit;
+	position: relative;
+	top: 4.4px;
+}
+
+.redPiece {
+	background-color: red;
+	border: 1pt solid #646262;
+}
+
+.blackPiece {
+	background-color: black;
+	border: 1pt solid #646262;
+}
+
+.tentativeMove_source {
+	background-color: #709ba3 !important;
+}
+
+#checkersBoard .tentativeMove_destination {
+	background-color: #566e72 !important;
+}
+
+.computerLatestMove_source {
+	background-color: #caad6a !important;
+}
+
+.computerLatestMove_destination {
+	background-color: #a5905f !important;
+}
+
+.king .cc2 {
+	background-color: yellow;
+}
+
+.human_win_1 {
+	background-color: #8fb88f !important;
+}
+
+.human_win_2 {
+	background-color: green !important;
+}
+
+.computer_win_1 {
+	background-color: #fc5e5e !important;
+}
+
+.computer_win_2 {
+	background-color: darkred !important;
+}
+
+.stalemate_1 {
+	background-color: lightgray !important;
+}
+
+.stalemate_2 {
+	background-color: gray !important;
+}
+
+#gameOptions {
+	border: 1pt solid black;
+	border-radius: 3px;
+	background-color: #ebd9c1;
+	width: 200px;
+}
+
+#gameOptionsMessage {
+	font-style:italic;
+	font-size:10pt;
+	height:20px;
+	opacity: 0;
+	transition: opacity 1s;
+}
+
+.closeButton {
+	float: right;
+	background: transparent;
+	outline: none;
+	border: none;
+}
+
+.optionsButton {
+	width:130px; 
+	display:block; 
+	clear:both;
+}

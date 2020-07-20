@@ -1,0 +1,142 @@
+#mineSweeperBoardContainer {
+	display: inline-block;
+	padding: 10px;
+	border: 2pt solid black;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+
+#mineSweeperBoard {
+	font-family: Sans-serif;
+	font-weight: bold;
+	user-select: none;
+}
+
+#mineSweeperBoard td {
+	width: 22px;
+	height: 22px;
+	border: 1px solid black;
+	border-radius: 2px;
+}
+
+#mineSweeperBoard td.unclicked {
+	background-color: #c0ced3;
+}
+
+#mineSweeperBoard td.unclicked:hover {
+	background-color: rgb(180,180,180);
+}
+
+#mineSweeperBoard td.clicked {
+	transition: background-color 0.5s;
+	background-color: white;
+}
+
+#mineSweeperBoard td.clicked.mine {
+	background-color: red;
+	transition: all 2s;
+}
+
+#mineSweeperBoard td.clicked.mine.defaultBackground {
+	background-color: lightgray;
+	transition: all 2s;
+}
+
+.one {
+	color: blue;
+}
+
+.two {
+	color: green;
+}
+
+.three {
+	color: red;
+}
+
+.four {
+	color: purple;
+}
+
+.five {
+	color: maroon;
+}
+
+.six {
+	color: turquoise;
+}
+
+.seven {
+	color: black;
+}
+
+.eight {
+	color: darkgray;
+}
+
+#flagModeCheckBox {
+	margin: 2px 2px 14px 2px;
+	width: 16px;
+    height: 16px;
+	position: relative;
+	top: 2px;
+}
+
+#flagModeCheckBoxLabel {
+	user-select: none;
+}
+
+#gameOptions {
+	border: 4pt solid lightblue;
+	border-radius: 8px;
+	background-color: lightgray;
+	width: 300px;
+}
+
+.closeButton {
+	float: right;
+	background: transparent;
+	outline: none;
+	border: none;
+}
+
+#gameOptionsTable td {
+	text-align: left;
+	padding-left: 10px;
+}
+
+#gameOptionsTable td.textInputDataCell {
+	padding-left: 5px;
+}
+
+.displayBox {
+	width: 60px;
+	border: 1pt solid black;
+	border-radius: 4px;
+	background-color: #F0F0F0;
+	color: red;
+	font-weight: bold;
+	margin-bottom: 6px;
+}
+
+.icon {
+	display: inline-block;
+}
+
+.icon img {
+	width: 28px;
+	height: 28px;
+	vertical-align: bottom;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
