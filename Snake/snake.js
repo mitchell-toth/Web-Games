@@ -3,7 +3,11 @@
 //https://cse.taylor.edu/~mtoth/Snake/snake.html
 
 
-{ //Secure code block START...
+//Public:
+let setupGame, toggleGameOptions, applyOptionsChanges, resetUserStats;
+
+//Private:
+(function(){
 
 /*--------Global Variables--------*/
 
@@ -142,7 +146,7 @@ function updateSnakeStorage() {
 //Called upon clicking 'Apply' in the 'Options' tab.
 //Updates the user's preferences in Local Storage if these exist.
 //Creates the user's Local Storage presence if not.
-let saveUserData = function() {
+function saveUserData() {
 	updateSnakeStorage();
 	setLocalStorageItem("Snake", SNAKE_STORAGE);
 }
@@ -167,7 +171,7 @@ function getUserHighScoreData(useWinString) {
 
 //----------------------------------------------------------------------------------
 //Record a new high score to be saved to Local Storage.
-let recordUserHighScoreData = function(newHighScore) {
+function recordUserHighScoreData(newHighScore) {
 	if (NullorUndf(HIGH_SCORE_RECORDS[GAME_SPEED])) { 
 		HIGH_SCORE_RECORDS[GAME_SPEED] = []; 
 	}
@@ -191,7 +195,7 @@ let recordUserHighScoreData = function(newHighScore) {
 //----------------------------------------------------------------------------------
 //See if the user's new high score is noteworthy.
 //If so, record a new "top skill points" entry or update an existing one to be saved to Local Storage.
-let recordUserSkillPointData = function(score) {
+function recordUserSkillPointData(score) {
 	//Sub-function to see if an entry with the same game configuration is already recorded.
 	//If so, return that entry so that it can be updated.
 	function getExistingEntry(newEntry) {
@@ -248,7 +252,7 @@ let recordUserSkillPointData = function(score) {
 
 //----------------------------------------------------------------------------------
 //Reset the user's high score and skill level stats.
-function resetUserStats() {
+resetUserStats = function() {
 	let msg = "Are you sure you want to reset your stats? You will lose all high score and skill level data.";
 	if (confirm(msg)) {
 		TOP_SKILL_SCORES = [];
@@ -466,7 +470,6 @@ function getSkillLevel(skillPoints) {
 	else if (doSetSkillRange("Intermediate", intermediateThreshold, expertThreshold)) {}
 	else { doSetSkillRange("Beginner", beginnerThreshold, intermediateThreshold); }
 	
-	//return `${level} ${(((skillPoints-threshold)/range)*10).toFixed(2)}`;
 	return `${level} ${Math.round(((skillPoints-threshold)/range)*100)}%`;
 }
 
@@ -546,7 +549,7 @@ function populateSkillScoresTable(highlightMostRecent) {
 
 //----------------------------------------------------------------------------------
 //Place a new fruit in a random empty location on the board.
-let placeNewFruit = function() {
+function placeNewFruit() {
 	//First, get all of the board's empty squares.
 	let emptySquares = [];
 	for (let r=0; r<NUM_ROWS; r++) {
@@ -568,7 +571,7 @@ let placeNewFruit = function() {
 
 //----------------------------------------------------------------------------------
 //Called upon clicking the 'Options' button. Toggles the display of the game options.
-function toggleGameOptions() {
+toggleGameOptions = function() {
 	let optionsButton = document.getElementById("gameOptionsButton");
 	let gameOptions = document.getElementById("gameOptions");
 	if (isHidden(optionsButton)) {  //If the 'Options' button is hidden, then the game options must be showing. So hide them.
@@ -765,7 +768,7 @@ function runGame() {
 
 //----------------------------------------------------------------------------------
 //Helper function to give the snake a new tail.
-let addToSnakeLength = function(newTailRow, newTailCol, previousTail) {
+function addToSnakeLength(newTailRow, newTailCol, previousTail) {
 	//Create the new tail.
 	let newTail = newSnakeNode(newTailRow, newTailCol, null);
 	previousTail.prev = newTail;
@@ -779,7 +782,7 @@ let addToSnakeLength = function(newTailRow, newTailCol, previousTail) {
 //Called upon the game being won or lost.
 //Does a neat color wave that washes over the snake.
 //Also, handles score and high score information.
-let handleEndOfGame = function(gameScore) {
+function handleEndOfGame(gameScore) {
 	let gameWon = isGameWon();
 	//First of all, make sure that the game-terminating-board-state is showing.
 	updateSnakeBoard();
@@ -843,7 +846,7 @@ function isGameWon() {
 //Called upon clicking the 'Apply' button in the 'Options' tab. 
 //This takes all of the widget values and applies them to the game, redrawing the entire board and queueing up a new game.
 //Essentially, it ensures that the game's global variables are all up to date with the newest preferences, and re-sets-up the game.
-function applyOptionsChanges() {
+applyOptionsChanges = function() {
 	//Important game stuff. 
 	GAME_SPEED = parseInt(document.getElementById("speedRangeInput").value);
 	NUM_ROWS = parseInt(document.getElementById("rowsRangeInput").value);
@@ -882,7 +885,7 @@ function newSnakeNode(r, c, previousNode) {
 
 //----------------------------------------------------------------------------------
 //Set up the game, relying on the values of global variables to dictate how things are set up.
-function setupGame() {
+setupGame = function() {
 	//Reset game status global variables.
 	clearInterval(GAME_TIMER_ID);
 	GAME_RUNNING = false;
@@ -965,4 +968,5 @@ window.addEventListener("load", function() {
 	setupGame();
 });
 
-} //Secure code block END...
+
+})();  //Private code block END...
