@@ -111,31 +111,59 @@ content h2 {
 }
 
 #topSkillScoresTable {
-	border: 1pt solid black;
+	border-collapse: collapse;
 }
 
-#topSkillScoresTable td, #topSkillScoresTable th {
+#topSkillScoresTable tbody td, #topSkillScoresTable thead th {
 	border: 1pt solid black;
 	padding: 6px;
 }
 
-#topSkillScoresTable tr.headerRow:nth-child(1), #topSkillScoresTable .skillEntryRank {
+#topSkillScoresTable thead th, #topSkillScoresTable .skillEntryRank {
 	background-color: black;
 	color: white;
+	border: 1pt solid white;
 }
 
-#topSkillScoresTable tr {
+#topSkillScoresTable thead th:last-child {
+	border-right: 1pt solid black;
+}
+
+#topSkillScoresTable tbody tr:last-child td:first-child {
+	border-bottom: 1pt solid black;
+}
+
+#topSkillScoresTable tbody {
 	background-color: lightgray;
+	border: 1pt solid black;
+	margin-bottom: 4px;
 }
 
-#topSkillScoresTable tr:nth-child(2) td:nth-child(2) {
+#topSkillScoresTable tfoot {
+	font-style: italic;
+	font-size: 11pt;
+}
+
+#topSkillScoresTable tbody tr:nth-child(1) td:nth-child(2) {
 	background-color: #83ff83;
 }
 
-#topSkillScoresTable td.mostRecentDate {
+.userSkillLevel {
+	background-color: #83ff83;
+}
+
+.mostRecentDate {
 	background-color: #fafaa8;
 }
 
-#topSkillScoresTable tr.mostRecentAddition {
+.mostRecentAddition {
 	background-color: #90f8db;
+}
+
+.colorBlock {
+	display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 1px solid black;
+	border-radius: 9px;
 }

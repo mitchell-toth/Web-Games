@@ -138,26 +138,37 @@
 				<h2>Your Best Games</h2>
 				<em class="hidden" id="noSavedGamesMessage">You currently have no saved games.</em>
 				<table class="hidden blockCenter" id="topSkillScoresTable">
-					<tr class="headerRow">
-						<th>Rank</th>
-						<th title="Skill level hierarchy: 
-Perfect, 
-Insane, 
-Legendary, 
-Master, 
-Expert, 
-Intermediate, 
-Beginner"
-						>Skill Level</th>
-						<th>Score</th>
-						<th>Game Configuration</th>
-						<th>Available Fruit</th>
-						<th>Fruit Effect</th>
-						<th>Date</th>
-						<th>Count</th>
-					</tr>
+					<thead>
+						<tr>
+							<th>Rank</th>
+							<th>Skill Level</th>
+							<th>Score</th>
+							<th>Game Configuration</th>
+							<th>Available Fruit</th>
+							<th>Fruit Effect</th>
+							<th>Date</th>
+							<th>Count</th>
+						</tr>
+					</thead>
+					<tbody id="topSkillScoresTableBody">
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan=6 style="text-align:left">Skill level hierarchy: &nbsp; Beginner, Intermediate, Expert, Master, Legendary, Insane, Perfect</td>
+							<td colspan=2 style="text-align:right"><button style="margin-top:6px" onclick="resetUserStats()">Reset Stats</button></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td colspan=5 style="text-align:left">
+								<span class="colorBlock userSkillLevel"></span> = Your skill level
+								&nbsp;&nbsp;&nbsp;
+								<span class="colorBlock mostRecentDate"></span> = Latest date
+								&nbsp;&nbsp;&nbsp;
+								<span class="colorBlock mostRecentAddition"></span> = Latest entry
+							</td>
+						</tr>
+					</tfoot>
 				</table>
-				<!--<button onclick="window.localStorage.clear();">Reset Stats</button>-->
 			</div>
 			
 		</content>

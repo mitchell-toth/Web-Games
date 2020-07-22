@@ -64,6 +64,7 @@ updateSnakeStorage();
 
 
 /*---------------------------------------Local Storage code---------------------------------------*/
+/*------------------------------------------------------------------------------------------------*/
 
 //Called upon game startup. 
 //Looks at Local Storage and gets the user's high score data and preferences, if they exist.
@@ -117,6 +118,7 @@ function getSavedUserData() {
 }
 
 
+//----------------------------------------------------------------------------------
 //Update the 'SNAKE_STORAGE' global variable with all of the latest preferences/data.
 function updateSnakeStorage() {
 	SNAKE_STORAGE = {
@@ -135,16 +137,18 @@ function updateSnakeStorage() {
 }
 
 
+//----------------------------------------------------------------------------------
 //Save all of the user's chosen preferences to Local Storage.
 //Called upon clicking 'Apply' in the 'Options' tab.
 //Updates the user's preferences in Local Storage if these exist.
 //Creates the user's Local Storage presence if not.
-function saveUserData() {
+let saveUserData = function() {
 	updateSnakeStorage();
 	setLocalStorageItem("Snake", SNAKE_STORAGE);
 }
 
 
+//----------------------------------------------------------------------------------
 //Get the user's saved high score for the current game configuration.
 //Returns in numeric form ("WIN" becomes the highest score possible).
 function getUserHighScoreData(useWinString) {
@@ -161,8 +165,9 @@ function getUserHighScoreData(useWinString) {
 }
 
 
+//----------------------------------------------------------------------------------
 //Record a new high score to be saved to Local Storage.
-function recordUserHighScoreData(newHighScore) {
+let recordUserHighScoreData = function(newHighScore) {
 	if (NullorUndf(HIGH_SCORE_RECORDS[GAME_SPEED])) { 
 		HIGH_SCORE_RECORDS[GAME_SPEED] = []; 
 	}
@@ -183,9 +188,10 @@ function recordUserHighScoreData(newHighScore) {
 }
 
 
+//----------------------------------------------------------------------------------
 //See if the user's new high score is noteworthy.
 //If so, record a new "top skill points" entry or update an existing one to be saved to Local Storage.
-function recordUserSkillPointData(score) {
+let recordUserSkillPointData = function(score) {
 	//Sub-function to see if an entry with the same game configuration is already recorded.
 	//If so, return that entry so that it can be updated.
 	function getExistingEntry(newEntry) {
@@ -220,7 +226,7 @@ function recordUserSkillPointData(score) {
 		if (existingEntry.score == score) { existingEntry.count++; }
 		else { existingEntry.count = 1; }
 		existingEntry.score = score;
-		existingEntry.exact_date = Date();
+		existingEntry.exact_date = new Date();
 		existingEntry.display_date = Now();
 		newChange = true;
 	}
@@ -240,7 +246,22 @@ function recordUserSkillPointData(score) {
 }
 
 
+//----------------------------------------------------------------------------------
+//Reset the user's high score and skill level stats.
+function resetUserStats() {
+	let msg = "Are you sure you want to reset your stats? You will lose all high score and skill level data.";
+	if (confirm(msg)) {
+		TOP_SKILL_SCORES = [];
+		HIGH_SCORE_RECORDS = [];
+		populateSkillScoresTable(false);
+		saveUserData();
+		setupGame();
+	}
+}
+
+
 /*---------------------------------------Snake event listeners---------------------------------------*/
+/*---------------------------------------------------------------------------------------------------*/
 
 //User is on a computer:
 //Handle keyboard input.
@@ -270,6 +291,7 @@ SNAKE_BOARD_VISUAL.addEventListener('swiped-down', function(event) {
 });
 
 
+//----------------------------------------------------------------------------------
 //Handle the user's snake-moving intentions. 
 //All keys except the arrow keys and WASD are filtered out.
 //Based on the key pressed, set the global DIRECTION to the corresponding direction.
@@ -277,7 +299,7 @@ function handleKeyPress(key, event) {
 	//I lied. The 'Enter' key is also kind of allowed in. I like it as a shortcut to clicking 'New Game'.
 	if (key == "Enter") { document.getElementById("startGameButton").click(); }
 	
-	const arrowKeys = ["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft", "w", "a", "s", "d"];
+	const arrowKeys = ["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft", "w", "a", "s", "d", "W", "A", "S", "D"];
 	//Filter out kepyresses that aren't the arrow keys.
 	if (!ifItemInArray(key, arrowKeys)) { return; }
 	//Prevent the arrow keys from scrolling the page.
@@ -285,18 +307,22 @@ function handleKeyPress(key, event) {
 	
 	switch(key) {
 	case "w":
+	case "W":
 	case "ArrowUp":     //Up
 		if (CURRENT_DIRECTION != DOWN) { DIRECTION = UP; }  //Ensure the snake can't do a 180 degree turn on itself.
 		break;
 	case "d":
+	case "D":
 	case "ArrowRight":  //Right
 		if (CURRENT_DIRECTION != LEFT) { DIRECTION = RIGHT; }
 		break;
 	case "s":
+	case "S":
 	case "ArrowDown":   //Down
 		if (CURRENT_DIRECTION != UP) { DIRECTION = DOWN; }
 		break;
 	case "a":
+	case "A":
 	case "ArrowLeft":   //Left
 		if (CURRENT_DIRECTION != RIGHT) { DIRECTION = LEFT; }
 		break;
@@ -308,7 +334,9 @@ function handleKeyPress(key, event) {
 }
 
 
+
 /*---------------------------------------Game logic code---------------------------------------*/
+/*---------------------------------------------------------------------------------------------*/
 
 //Set up the logical board with all empty squares.
 function initializeLogicalBoard() {
@@ -322,6 +350,7 @@ function initializeLogicalBoard() {
 }
 
 
+//----------------------------------------------------------------------------------
 //Set up the visual board with all empty squares.
 function initializeVisualBoard() {
 	SNAKE_BOARD_VISUAL.innerHTML = "";
@@ -336,6 +365,7 @@ function initializeVisualBoard() {
 }
 
 
+//----------------------------------------------------------------------------------
 //Visually update the board.
 //This is called everytime after a move is made.
 //It essentially does a fresh rewrite of the visual board's contents, using the contents of the logical board as a guide.
@@ -374,6 +404,7 @@ function updateSnakeBoard() {
 }
 
 
+//----------------------------------------------------------------------------------
 //Calculate a numeric "skill points" value that tells the user how their good their score is.
 //This measurement takes the game's configuration into account as well as the user's score.
 function calculateSkillPoints(score, manualArgs = null) {
@@ -401,6 +432,7 @@ function calculateSkillPoints(score, manualArgs = null) {
 }
 
 
+//----------------------------------------------------------------------------------
 //Return a string that describes the user's relative skill based on a given score.
 function getSkillLevel(skillPoints) {
 	const beginnerThreshold = 0;        //       0 - 200
@@ -426,7 +458,7 @@ function getSkillLevel(skillPoints) {
 	
 	//See which category the given 'skillPoints' value is in.
 	//Honestly, this is very weird code here. I've never seen anyone do this kind of thing, but it works well to control the flow of execution with these ranges.
-	if (doSetSkillRange("Perfect", perfectThreshold, perfectThreshold+1)) {}
+	if (doSetSkillRange("Perfect", perfectThreshold, perfectThreshold+1)) { return level; }
 	else if (doSetSkillRange("Insane", insaneThreshold, perfectThreshold)) {}
 	else if (doSetSkillRange("Legendary", legendaryThreshold, insaneThreshold)) {}
 	else if (doSetSkillRange("Master", masterThreshold, legendaryThreshold)) {}
@@ -439,8 +471,13 @@ function getSkillLevel(skillPoints) {
 }
 
 
+//----------------------------------------------------------------------------------
+//Populate the top skill scores table with the user's top skill scores.
+//Parameter 'highlistMostRecent' is used to differentiate between new additions (which should be highlighted) and merely loading the table.
 function populateSkillScoresTable(highlightMostRecent) {
+	//Helper sub-function to return a new tr.
 	function newTr() { return document.createElement("tr"); }
+	//Helper sub-function to return a new td with innerText and class properties already set.
 	function newTd(contents, className=null) { 
 		let td = document.createElement("td");
 		td.innerText = contents;
@@ -449,15 +486,19 @@ function populateSkillScoresTable(highlightMostRecent) {
 	}
 	
 	let skillScoresTable = document.getElementById("topSkillScoresTable");
-	let numRows = skillScoresTable.rows.length;
-	for (let i=numRows-1; i>0; i--) {
-		skillScoresTable.removeChild(skillScoresTable.rows[i]);
+	let skillScoresTableBody = document.getElementById("topSkillScoresTableBody");
+	
+	//Clear the table.
+	let numRows = skillScoresTableBody.rows.length;
+	for (let i=numRows-1; i>=0; i--) {
+		skillScoresTableBody.removeChild(skillScoresTableBody.rows[i]);
 	}
 	
 	let mostRecentDate = null;
 	let indexOfMostRecentDate = null;
 	let numSkillScoreEntries = TOP_SKILL_SCORES.length;
 	
+	//Hide or show the no-saved-games-message depending on whether there is data to display or not.
 	if (numSkillScoreEntries > 0) {
 		hide(document.getElementById("noSavedGamesMessage"));
 		show(skillScoresTable);
@@ -468,6 +509,12 @@ function populateSkillScoresTable(highlightMostRecent) {
 		return;
 	}
 	
+	//Sort the entries by skill points.
+	TOP_SKILL_SCORES.sort(function(a, b){
+		return calculateSkillPoints(b.score, b.gameConfig) - calculateSkillPoints(a.score, a.gameConfig);
+	});
+	
+	//Loop through the user's top skill scores and populate the table.
 	for (let i=0; i<numSkillScoreEntries; i++) {
 		let s = TOP_SKILL_SCORES[i];
 		let row = newTr();
@@ -477,25 +524,29 @@ function populateSkillScoresTable(highlightMostRecent) {
 		row.appendChild(newTd(`${s.gameConfig.game_speed} speed, ${s.gameConfig.num_rows}x${s.gameConfig.num_cols} board`));
 		row.appendChild(newTd(s.gameConfig.available_fruit));
 		row.appendChild(newTd(s.gameConfig.fruit_effect));
-		if (NullorUndf(mostRecentDate) || s.exact_date > mostRecentDate) { 
+		//Keep track of the most recent date and its row index.
+		if (NullorUndf(mostRecentDate) || new Date(s.exact_date) > new Date(mostRecentDate)) { 
 			mostRecentDate = s.exact_date;
-			indexOfMostRecentDate = i+1;
+			indexOfMostRecentDate = i;
 		}
 		row.appendChild(newTd(s.display_date));
 		row.appendChild(newTd(s.count));
-		skillScoresTable.appendChild(row);
+		skillScoresTableBody.appendChild(row);
 	}
 	
-	skillScoresTable.rows[indexOfMostRecentDate].cells[6].classList.add("mostRecentDate");
+	//Highlight the table datum containing the most recent date.
+	skillScoresTableBody.rows[indexOfMostRecentDate].cells[6].classList.add("mostRecentDate");
 	
-	if (highlightMostRecent && indexOfMostRecentDate) {
-		skillScoresTable.rows[indexOfMostRecentDate].classList.add("mostRecentAddition");
+	//Highlight the row containing the most recent entry if desired.
+	if (highlightMostRecent && !NullorUndf(indexOfMostRecentDate)) {
+		skillScoresTableBody.rows[indexOfMostRecentDate].classList.add("mostRecentAddition");
 	}
 }
 
 
+//----------------------------------------------------------------------------------
 //Place a new fruit in a random empty location on the board.
-function placeNewFruit() {
+let placeNewFruit = function() {
 	//First, get all of the board's empty squares.
 	let emptySquares = [];
 	for (let r=0; r<NUM_ROWS; r++) {
@@ -515,6 +566,7 @@ function placeNewFruit() {
 }
 
 
+//----------------------------------------------------------------------------------
 //Called upon clicking the 'Options' button. Toggles the display of the game options.
 function toggleGameOptions() {
 	let optionsButton = document.getElementById("gameOptionsButton");
@@ -530,6 +582,7 @@ function toggleGameOptions() {
 }
 
 
+//----------------------------------------------------------------------------------
 //Helper function to rotate the snake's head.
 //The snake's head is unique in that it has a small border-radius set for two of its sides.
 //This must be rotated as the snake changes direction.
@@ -541,6 +594,7 @@ function rotateSnakeSquare(r, c, deg) {
 }
 
 
+//----------------------------------------------------------------------------------
 //Helper function to determine if a snake position is within the bounds of the board.
 function isInBounds(row, col) {
 	if (row < 0 || row >= NUM_ROWS || col < 0 || col >= NUM_COLS) { return false; }
@@ -548,6 +602,7 @@ function isInBounds(row, col) {
 }
 
 
+//----------------------------------------------------------------------------------
 //Helper function to determine if the snake has either hit a wall or itself.
 function isDeathSquare(row, col) {
 	if (!isInBounds(row, col)) { return true; }  //Oops! The snake ran into the wall.
@@ -556,6 +611,7 @@ function isDeathSquare(row, col) {
 }
 
 
+//----------------------------------------------------------------------------------
 //Advance the snake by 1 square in the appropriate direction.
 //This is called upon every iteration of the main game loop.
 //Returning true = the player lost the game on this move.
@@ -626,6 +682,7 @@ function moveSnake(direction) {
 }
 
 
+//----------------------------------------------------------------------------------
 //Helper function to move the rest of the snake body (everything but the head).
 //Of course, the body should follow the head's lead, trekking in the same path.
 //This traverses through the linked list and sets each body part's location to be that of its successor's previous square.
@@ -653,6 +710,7 @@ function moveSnakeBody(prevRow, prevCol) {
 }
 
 
+//----------------------------------------------------------------------------------
 //The main game loop.
 //This is only entered after the user has made some kind of snake-moving input on the board, whether a swipe or a keyboard press.
 //The timing is done with a setInterval, and the snake simply is told to move in the direction specified in DIRECTION on every iteration.
@@ -705,8 +763,9 @@ function runGame() {
 }
 
 
+//----------------------------------------------------------------------------------
 //Helper function to give the snake a new tail.
-function addToSnakeLength(newTailRow, newTailCol, previousTail) {
+let addToSnakeLength = function(newTailRow, newTailCol, previousTail) {
 	//Create the new tail.
 	let newTail = newSnakeNode(newTailRow, newTailCol, null);
 	previousTail.prev = newTail;
@@ -716,6 +775,7 @@ function addToSnakeLength(newTailRow, newTailCol, previousTail) {
 }
 
 
+//----------------------------------------------------------------------------------
 //Called upon the game being won or lost.
 //Does a neat color wave that washes over the snake.
 //Also, handles score and high score information.
@@ -759,6 +819,7 @@ let handleEndOfGame = function(gameScore) {
 }
 
 
+//----------------------------------------------------------------------------------
 //Helper function to determine if the game has been won.
 //Checks if the board is completely filled with the snake.
 function isGameWon() {
@@ -778,6 +839,7 @@ function isGameWon() {
 }
 
 
+//----------------------------------------------------------------------------------
 //Called upon clicking the 'Apply' button in the 'Options' tab. 
 //This takes all of the widget values and applies them to the game, redrawing the entire board and queueing up a new game.
 //Essentially, it ensures that the game's global variables are all up to date with the newest preferences, and re-sets-up the game.
@@ -811,12 +873,14 @@ function applyOptionsChanges() {
 }
 
 
+//----------------------------------------------------------------------------------
 //Helper function to create a new, generic snake body part node.
 function newSnakeNode(r, c, previousNode) {
 	return {"r": r, "c": c, "prev": previousNode};
 }
 
 
+//----------------------------------------------------------------------------------
 //Set up the game, relying on the values of global variables to dictate how things are set up.
 function setupGame() {
 	//Reset game status global variables.
@@ -843,8 +907,8 @@ function setupGame() {
 	else { document.getElementById("gameSkillHighScoreCaption").innerText = getSkillLevel(calculateSkillPoints(savedUserHighScore)); }
 	document.getElementById("gameSkillMaxScoreCaption").innerText = getSkillLevel(calculateSkillPoints("WIN"));
 	
-	let skillScoresTable = document.getElementById("topSkillScoresTable");
-	let highlightedRows = skillScoresTable.getElementsByClassName("mostRecentAddition");
+	let skillScoresTableBody = document.getElementById("topSkillScoresTableBody");
+	let highlightedRows = skillScoresTableBody.getElementsByClassName("mostRecentAddition");
 	if (highlightedRows.length > 0) {
 		highlightedRows[0].classList.remove("mostRecentAddition");
 	}
@@ -873,6 +937,7 @@ function setupGame() {
 }
 
 
+//----------------------------------------------------------------------------------
 //When the DOM is loaded, set up everything as needed.
 window.addEventListener("load", function() {
 	//Add event listeners for the 'Options' tab sliders so that their corresponding labels can display their values.
